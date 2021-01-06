@@ -1,12 +1,12 @@
 
 
-export const useApiAuth = (service,nameOrId,pwdOrToken, submit) => {
+export const useApiAuth = (service,nameOrId,pwdOrToken, submit,message) => {
 
         const callApi = async () => {
             try {
-                const data = await service(nameOrId,pwdOrToken);
+                const data = await service(nameOrId,pwdOrToken,encodeURI(message));
                 console.log(data);
-                submit(data.data.result,nameOrId);
+                submit !== null && submit(data.data.result,nameOrId);
             }
             catch(err) {
                 console.log(err)

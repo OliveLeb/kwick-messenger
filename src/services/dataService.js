@@ -8,7 +8,7 @@ const getMessages = (token,timestamp) => {
     return http.get(`/talk/list/${token}/${timestamp}`);
 };
 
-const postMessage = (token,id,message) => {
+const postMessage = (id,token,message) => {
     return http.get(`/say/${token}/${id}/${message}`);
 };
 
