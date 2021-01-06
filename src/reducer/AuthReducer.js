@@ -5,10 +5,11 @@ export const initialState = {
     },
     connectedUser: {
         user_name:'',
-        user_id:0,
+        user_id:'',
         token:''
     },
-    isLogged: false
+    isLogged: false,
+    userSaved: true
 
 };
 
@@ -30,6 +31,11 @@ const AuthReducer = (state,action) => {
             };
         case 'LOGOUT':
             return initialState;
+        case 'REMEMBER_ME':
+            return {
+                ...state,
+                userSaved: action.payload
+            };
         default:
             return state;
     }

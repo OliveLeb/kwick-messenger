@@ -27,6 +27,11 @@ const logOut = (dispatch) => () => {
     dispatch({type:'LOGOUT'});
 };
 
-const actions = { handleInput, logIn, submitRegister, submitLogIn, logOut };
+const handleRememberMe = (dispatch) => (e) => {
+    console.log(e)
+    dispatch({type:'REMEMBER_ME',payload:e.target.checked});
+};
+
+const actions = { handleInput, logIn, submitRegister, submitLogIn, logOut, handleRememberMe };
 
 export default actions;
