@@ -9,13 +9,17 @@ const Form = ({submit}) => {
 
     return (
         <form onSubmit={submit}>
-            <label htmlFor='user_name' >User name</label>
-            <input type='text' name='user_name' onChange={handleInput} value={user_name}
-            />
+            <div>
+                <label htmlFor='user_name' >Username : </label>
+                <input type='text' name='user_name' onChange={handleInput} value={user_name}
+                />
+            </div>
 
-            <label htmlFor='password' >Password</label>
-            <input type='password' name='password' onChange={handleInput} value={password}
-            />
+            <div>
+                <label htmlFor='password' >Password : </label>
+                <input type='password' name='password' onChange={handleInput} value={password}
+                />
+            </div>
             
             <button type='submit'>Envoyer</button>
         </form>

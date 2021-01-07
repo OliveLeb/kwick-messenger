@@ -1,5 +1,6 @@
 import React, { useContext, useReducer } from 'react';
 import InputMessage from '../components/InputMessage';
+import MessagesList from '../components/MessagesList';
 import UsersList from '../components/UsersList';
 import { Context as AuthContext} from '../context/AuthContext';
 import { useApiData } from '../hooks/useApiData';
@@ -19,9 +20,12 @@ const Home = () => {
     return (
         <>
         <section>
+        <section>
              hello {connectedUser.user_name}
         </section>
         <InputMessage token={token} id={connectedUser.user_id} dispatch={dispatch} message={message}/>
+        <MessagesList messages={messages} />
+        </section>
         <UsersList users={users} />
         </>
     );

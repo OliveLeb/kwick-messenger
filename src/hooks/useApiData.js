@@ -18,7 +18,7 @@ export const useApiData = (isLogged,serviceUser,serviceMessages,token) => {
                     type:'FETCH_DATA',
                     payload: {
                         users: loggedUsers.data.result.user.map(user => user),
-                        messages: messagesSent.data.result.talk.map(message => message)
+                        messages: messagesSent.data.result.talk.sort((a,b)=> b.timestamp - a.timestamp).map(message => message)
                     }
                 });
             }
