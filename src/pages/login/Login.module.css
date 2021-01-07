@@ -1,0 +1,33 @@
+section {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section > * {
+  margin: 20px 0;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+form > * {
+  margin: 10px 0;
+}
+
+button {
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+}
+
+@media all and (min-width: 1024px) {
+  section {
+    width: 70vw;
+    height: 50vh;
+    margin: auto;
+  }
+}
