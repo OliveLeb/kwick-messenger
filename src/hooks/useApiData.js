@@ -13,7 +13,7 @@ export const useApiData = (isLogged,serviceUser,serviceMessages,token) => {
         const callApi = async () => {
             try {
                 const [loggedUsers,messagesSent] = await Promise.all([serviceUser(token),serviceMessages(token,'0')]);
-                console.log(loggedUsers,messagesSent);
+                // console.log(loggedUsers,messagesSent);
                 dispatch({
                     type:'FETCH_DATA',
                     payload: {

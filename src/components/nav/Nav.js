@@ -20,10 +20,10 @@ const Nav = () => {
             <NavLink to='/'><h1>Kwick Messagerie</h1></NavLink>
             <ul>
                 {isLogged 
-                ?   <li onClick={submitForm}>Log Out</li>
+                ?   <li><NavLink to='/login' onClick={submitForm}>Log Out</NavLink></li>
                 : !isLogged && location.pathname === '/login' 
-                ?   <li><NavLink to='/signup'>Sign Up</NavLink></li>
-                :   <li><NavLink to='/login'>Log In</NavLink></li>
+                ?   <li><NavLink to='/signup'>Inscris toi</NavLink></li>
+                :   <li><NavLink to='/login'>Connecte toi</NavLink></li>
                 }
             </ul>
         </nav>

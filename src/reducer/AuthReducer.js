@@ -8,13 +8,13 @@ export const initialState = {
         user_id:'',
         token:''
     },
-    isLogged: false,
-    userSaved: true
-
+    isLogged: false
 };
 
 const AuthReducer = (state,action) => {
     switch(action.type){
+        case 'RESET_FORM':
+            return initialState;
         case 'CHANGE_INPUT':
             return {
                 ...state,
@@ -31,11 +31,6 @@ const AuthReducer = (state,action) => {
             };
         case 'LOGOUT':
             return initialState;
-        case 'REMEMBER_ME':
-            return {
-                ...state,
-                userSaved: action.payload
-            };
         default:
             return state;
     }

@@ -6,7 +6,7 @@ const MessagesList = ({messages}) => {
         <section>
             <ul>
                 {
-                    messages.slice(0,10).map((item,index) => <MessageItem key={index} message={item}/>)
+                    messages.slice(0,30).map((item,index) => <MessageItem key={index} message={item}/>)
                 }
             </ul>
         </section>

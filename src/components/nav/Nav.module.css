@@ -3,6 +3,11 @@ nav {
   justify-content: space-between;
 }
 
-h1 {
+h1,
+a {
   text-transform: uppercase;
+}
+
+h1 {
+  color: #ff6f61;
 }
