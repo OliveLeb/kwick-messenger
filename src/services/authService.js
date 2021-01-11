@@ -1,5 +1,7 @@
 import http from './http.common';
 
+// Authentication routes
+
 const register = (user_name,pwd) => {
     return http.get(`/signup/${user_name}/${pwd}`);
 };

@@ -5,7 +5,9 @@ export const initialState = {
         user_id:'',
         content:''
     },
-    isLoading: false
+    isLoading: false,
+    isRefreshing: false,
+    fetchSinceTimestamp:21600000
 }
 
 const DataReducer = (state,action) => {
@@ -20,6 +22,16 @@ const DataReducer = (state,action) => {
                 ...state,
                 message: {...action.payload}
             }
+        case 'REFRESH':
+            return {
+                ...state,
+                isRefreshing: !state.isRefreshing
+            }
+        case 'DEFINE_TMP_LIMIT':
+            return {
+                ...state,
+                fetchSinceTimestamp: action.payload
+            };
         default: 
             return state;
     }

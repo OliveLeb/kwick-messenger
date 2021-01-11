@@ -5,7 +5,24 @@
   transform: translate(-50%, -50%);
   padding: 20px;
   z-index: 1000;
-  color: white;
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+  color: #ff6f61;
+}
+.modal > * {
+  margin: 10px;
+}
+
+.modal > button {
+  border: none;
+  background-color: #ff6f61;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.modal > button:hover {
+  background-color: #ff3926;
 }
 
 .overlay {

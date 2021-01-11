@@ -8,7 +8,8 @@ export const initialState = {
         user_id:'',
         token:''
     },
-    isLogged: false
+    isLogged: false,
+    errorMessage: {}
 };
 
 const AuthReducer = (state,action) => {
@@ -18,6 +19,7 @@ const AuthReducer = (state,action) => {
         case 'CHANGE_INPUT':
             return {
                 ...state,
+                errorMessage:initialState.errorMessage,
                 user: {...state.user, ...action.payload}
             };
         case 'LOGGEDIN':
@@ -31,6 +33,11 @@ const AuthReducer = (state,action) => {
             };
         case 'LOGOUT':
             return initialState;
+        case 'ERROR_FORM':
+            return {
+                ...state,
+                errorMessage: action.payload
+            }
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useLocation, NavLink } from 'react-router-dom';
 import Form from '../../components/form/Form';
 import { Context } from '../../context/AuthContext';
 import { useApiAuth } from '../../hooks/useApiAuth';
@@ -9,10 +9,12 @@ import styles from './Auth.module.css'
 
 const Auth = ({req, title}) => {
 
-    const { isLogged, submitLogIn, user} = useContext(Context) 
+    const { isLogged, submitLogIn, user, handleErrors } = useContext(Context) 
     const { user_name, password } = user;
 
-    const [submitForm,errorMessage] = useApiAuth(authService[req],user_name,password,submitLogIn);
+    const [submitForm] = useApiAuth(authService[req],user_name,password,submitLogIn,null, handleErrors);
+
+    const location = useLocation();
   
     if(isLogged) {
         return <Redirect to='/' />;
@@ -21,7 +23,15 @@ const Auth = ({req, title}) => {
     return (
        <section className={styles.container}>
             <h2>{title}</h2>
-            <Form submit={submitForm} error={errorMessage}/>
+            <section className={styles.form}>
+                <Form submit={submitForm} location={location}/>
+            </section>            
+            <div className={styles.nav}>
+                {   location.pathname ==='/login'
+                 ?   <><h3>Pas de compte ?</h3><NavLink to='/signup' className={styles.btn}>Inscris toi !</NavLink></>
+                 :  <><h3>Déjà inscrit ?</h3><NavLink to='/login' className={styles.btn}>Connecte toi !</NavLink></>
+                }
+            </div>
         </section>
     )
 }

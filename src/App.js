@@ -1,13 +1,13 @@
+import { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Context as AuthContext } from './context/AuthContext';
 import LoggedRoute from './HOC/LoggedRoute'
 
 import Header from './components/Header';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Auth from './pages/auth/Auth';
-import { useContext, useEffect } from 'react';
-import { checkForAFK, getLocalStorageData, useLocalStorage } from './utils/utils';
+import { getLocalStorageData, useLocalStorage } from './utils/utils';
 
 
 
@@ -16,17 +16,17 @@ function App() {
 
   const {isLogged, submitLogIn} = useContext(AuthContext);
   
+  // CHECK IF LOCALSTORAGE AND IF SAVED TOKEN NOT EXPIRED TO CONNECT
   useEffect(()=> {
     if(!isLogged){
       let data = useLocalStorage.get(getLocalStorageData)
-      const {user_name,user_id,token} = data;
-      if(data) submitLogIn(user_id,token,user_name)
+      const {user_name,user_id,token,tmp} = data;
+      if(data) {
+        if((parseInt(tmp) - Date.now()) < 1200000) submitLogIn(user_id,token,user_name);
+        else useLocalStorage.delete();
+      }
     }
   },[isLogged])
-
-  // isLogged && checkForAFK();
-
-  // checkForAFK()
 
   return (
     <Router>
