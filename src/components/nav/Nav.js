@@ -6,6 +6,7 @@ import authService from '../../services/authService';
 import { FaBars } from 'react-icons/fa';
 
 import styles from './Nav.module.css';
+import { Context as OptionContext} from '../../context/OptionContext';
 
 const Nav = () => {
 
@@ -13,15 +14,17 @@ const Nav = () => {
     const { token, user_id } = connectedUser;
 
     const [submitForm] = useApiAuth(authService.logout,user_id,token,logOut);
+
+    const {setToggleMenu} = useContext(OptionContext);
     
     return (
         <nav className={styles.nav}>
             <NavLink to='/'><h1>Kwick Messagerie</h1></NavLink>
             {isLogged &&
             <>
-                <div className={styles.menuIcon}>
-                <FaBars />
-            </div>
+                <div className={styles.menuIcon} onClick={()=>setToggleMenu(prevState => !prevState)}>
+                    <FaBars />
+                </div>
             
             <div>
                 <NavLink to='/login' onClick={submitForm}>Déconnexion</NavLink>

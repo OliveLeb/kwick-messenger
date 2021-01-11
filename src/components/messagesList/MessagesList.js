@@ -1,16 +1,19 @@
 import React from 'react';
-import MessageItem from '../MessageItem';
+import MessageItem from '../messageItems/MessageItem';
 
 import styles from './MessagesList.module.css';
 
 const MessagesList = ({messages}) => {
     return (
         <section className={styles.container}>
-            <ul>
+            {messages.length > 0 ?
+                <ul>
                 {
-                    messages.slice(0,30).map((item,index) => <MessageItem key={index} message={item}/>)
+                    messages/*.slice(0,30)*/.map((item,index) => <MessageItem key={index} message={item}/>)
                 }
             </ul>
+            : <div>Pas de nouveaux messages !</div>
+            }
         </section>
     );
 };

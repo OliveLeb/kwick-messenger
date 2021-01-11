@@ -2,8 +2,8 @@ import React from 'react';
 
 const Select = ({handleInput,fetchSinceTimestamp}) => {
     return (
-        <>
-            <label htmlFor='timestamp'>Messages depuis</label>
+        <div>
+            <label htmlFor='timestamp'>Messages depuis </label>
             <select name='timestamp' onChange={handleInput} value={fetchSinceTimestamp}>
                 <option value={21600000}>6h</option>
                 <option value={86400000}>24h</option>
@@ -12,7 +12,7 @@ const Select = ({handleInput,fetchSinceTimestamp}) => {
                 <option value={604800000*4}>1 mois</option>
                 <option value={0}>le début</option>
             </select>
-        </>
+        </div>
     )
 };
 

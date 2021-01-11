@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Home from './pages/home/Home';
 import Auth from './pages/auth/Auth';
 import { getLocalStorageData, useLocalStorage } from './utils/utils';
+import { Provider as OptionProvider } from './context/OptionContext';
 
 
 
@@ -22,13 +23,16 @@ function App() {
       let data = useLocalStorage.get(getLocalStorageData)
       const {user_name,user_id,token,tmp} = data;
       if(data) {
-        if((parseInt(tmp) - Date.now()) < 1200000) submitLogIn(user_id,token,user_name);
+        if((Date.now() - parseInt(tmp)) < 1200000) {
+          submitLogIn(user_id,token,user_name)
+        }
         else useLocalStorage.delete();
       }
     }
   },[isLogged])
 
   return (
+    <OptionProvider>
     <Router>
       <Header />
       <main>
@@ -45,6 +49,7 @@ function App() {
         </Switch>
       </main>
     </Router>
+    </OptionProvider>
   );
 }
 

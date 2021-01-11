@@ -1,4 +1,11 @@
 .container {
-  width: calc(100vw - 20px);
+  max-width: calc(100vw - 30px);
   margin: auto;
+}
+
+/* DESKTOP / TABLET LANDSCAPE*/
+@media all and (min-width: 960px) {
+  .container {
+    width: calc(100vw - 330px);
+  }
 }

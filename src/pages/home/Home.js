@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import ActionBar from '../../components/ActionBar';
-import InputMessage from '../../components/InputMessage';
+import ActionBar from '../../components/actionBar/ActionBar';
+import InputMessage from '../../components/inputMessage/InputMessage';
 import MessagesList from '../../components/messagesList/MessagesList';
 import Modal from '../../components/modal/Modal';
 import UsersList from '../../components/usersList/UsersList';
@@ -44,7 +44,7 @@ const Home = () => {
         <>
             <ActionBar connectedUser={connectedUser} />
             <section className={styles.container}>                
-                <section>                    
+                <section className={styles.principal}>                    
                     <Modal open={isModalOpen} onClose={closeModal} />
                     <InputMessage token={token} id={user_id} />
                     <MessagesList messages={messages} />

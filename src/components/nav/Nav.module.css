@@ -21,6 +21,7 @@
 }
 .menuIcon {
   font-size: 25px;
+  cursor: pointer;
 }
 
 /* DESKTOP / TABLET LANDSCAPE */

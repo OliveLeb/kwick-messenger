@@ -1,5 +1,32 @@
 .container {
-  position: relative;
-  width: 200px;
+  position: absolute;
+  width: 100vw;
+  min-height: 60vh;
   left: 100%;
+  top: 53px;
+  transition: all 0.5s ease;
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px;
+}
+
+.container ul {
+  margin: 30px 10px 0 10px;
+}
+.container ul li {
+  margin: 10px 0;
+}
+
+.active {
+  transform: translate(-100%, 0);
+}
+
+/* DESKTOP / TABLET LANDSCAPE*/
+@media all and (min-width: 960px) {
+  .container {
+    position: static;
+    width: 300px;
+    background-color: inherit;
+    color: #0f4c81;
+  }
 }

@@ -1,0 +1,33 @@
+.input {
+  border: none;
+  border-bottom: 1px solid #0f4c81;
+  height: 30px;
+  font-size: 1.1em;
+  width: 70%;
+  margin-bottom: 5px;
+  transition: all 0.5s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-width: 2px;
+  width: 100%;
+}
+
+.container button {
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: #ff6f61;
+  font-weight: bold;
+}
+
+.container button:hover {
+  background-color: #ccc;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
