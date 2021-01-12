@@ -1,13 +1,14 @@
-import { useEffect, useReducer, useRef } from "react";
-import DataReducer, { initialState } from "../reducer/DataReducer";
+import { useContext, useEffect, useRef } from "react";
+import { Context as DataContext } from "../context/DataContext";
 import { checkAfk, useLocalStorage } from "../utils/utils";
 
 // FETCH MESSAGES AND USERS HOOKS
 
 export const useApiData = (isLogged,serviceUser,serviceMessages,token,isRefreshing,disconnect,user,fetchSinceTimestamp) => {
 
-    const [state,dispatch] = useReducer(DataReducer,initialState);
-    const {users,messages} = state;
+    const { fetchData, initFetching } = useContext(DataContext);
+
+
     const t = useRef();
 
     const mountedRef = useRef(true)
@@ -15,6 +16,9 @@ export const useApiData = (isLogged,serviceUser,serviceMessages,token,isRefreshi
     useEffect(()=> {
 
         const callApi = async () => {
+
+            initFetching();
+
             try {
                 if(!mountedRef) return null;
 
@@ -23,14 +27,7 @@ export const useApiData = (isLogged,serviceUser,serviceMessages,token,isRefreshi
                 
                 useLocalStorage.set(user.user_name,user.user_id,user.token,Date.now());
                 const [loggedUsers,messagesSent] = await Promise.all([serviceUser(token),serviceMessages(token,(Date.now() - fetchSinceTimestamp)/1000)]);
-
-                dispatch({
-                    type:'FETCH_DATA',
-                    payload: {
-                        users: loggedUsers.data.result.user.map(user => user),
-                        messages: messagesSent.data.result.talk.sort((a,b)=> b.timestamp - a.timestamp).map(message => message)
-                    }
-                });
+                fetchData(loggedUsers,messagesSent);
             }
             catch(err) {
                 console.log(err)
@@ -46,8 +43,6 @@ export const useApiData = (isLogged,serviceUser,serviceMessages,token,isRefreshi
         return () => mountedRef.current = false;
 
     },[isLogged,mountedRef, isRefreshing,fetchSinceTimestamp]);
-
-    return [users,messages];
 
 
         

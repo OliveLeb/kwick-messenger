@@ -1,0 +1,22 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+  font-size: 2em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, 50%);
+}
+
+.containerSpinner {
+  height: 100%;
+  position: relative;
+}

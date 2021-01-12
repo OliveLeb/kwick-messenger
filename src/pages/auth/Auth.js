@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { Redirect, useLocation, NavLink } from 'react-router-dom';
 import Form from '../../components/form/Form';
-import { Context } from '../../context/AuthContext';
+import { Context as AuthContext} from '../../context/AuthContext';
 import { useApiAuth } from '../../hooks/useApiAuth';
 import authService from '../../services/authService';
 
@@ -9,10 +9,9 @@ import styles from './Auth.module.css'
 
 const Auth = ({req, title}) => {
 
-    const { isLogged, submitLogIn, user, handleErrors } = useContext(Context) 
-    const { user_name, password } = user;
-
-    const [submitForm] = useApiAuth(authService[req],user_name,password,submitLogIn,null, handleErrors);
+    const { isLogged, submitLogIn, user, handleErrors } = useContext(AuthContext);
+    
+    const [submitForm] = useApiAuth(authService[req],user,submitLogIn,null, handleErrors);
 
     const location = useLocation();
   

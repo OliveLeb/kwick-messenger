@@ -1,23 +1,37 @@
 import { useLocalStorage, validationForm } from "../utils/utils";
 
 
-export const useApiAuth = (service,nameOrId,pwdOrToken, submit,message, handleErrors) => {
+export const useApiAuth = (service, user, submit,message, handleErrors) => {
 
-    
+        const {user_name,password,token,user_id} = user;
+
         const callApi = async () => {
-            
             try {
-                const data = await service(nameOrId,pwdOrToken,encodeURI(message));
-                // IF OK? LOGIN
+                let data;
+
+                if(token){
+                    // send message or logout
+                    data = await service(user_id,token,encodeURI(message))
+                }
+                else {
+                    // connect or signup
+                    data = await service(user_name,password,encodeURI(message));
+                };
+
                 if(data.data.result.status === 'done') {
-                    
-                    if(submit){
-                        const date = Date.now();
-                        if(String(service).includes('logout')) useLocalStorage.delete();
-                        else useLocalStorage.set(nameOrId,data.data.result.id,data.data.result.token,date);
-                        submit(data.data.result.id,data.data.result.token,nameOrId);
-                    } 
-                    else return;
+                    const date = Date.now();
+                    if(String(service).includes('logout')) {
+                        useLocalStorage.delete();
+                        submit();
+                    }
+                    else if(String(service).includes('say')) {
+                        useLocalStorage.set(user_name,user_id,token,date);
+                        submit({timestamp:date,content:message,user_name:user_name});
+                    }
+                    else {
+                        useLocalStorage.set(user_name,data.data.result.id,data.data.result.token,date);
+                        submit(data.data.result.id, data.data.result.token, user_name);
+                    }
                 }
                 // IF ERROR
                 else if(data.data.result.status === 'failure') {
@@ -35,8 +49,8 @@ export const useApiAuth = (service,nameOrId,pwdOrToken, submit,message, handleEr
         const submitForm = (e) => {
             if(e) e.preventDefault();
             // CHECK IF FIELDS EMPTY, IF NOT CALL API
-            let error = validationForm(nameOrId,pwdOrToken,callApi);
-            if(error) handleErrors(error.type,error.message);
+            let error = validationForm(user_name,password,message,callApi);
+            if(error !== undefined && handleErrors) handleErrors(error.type,error.message);
         };
 
 

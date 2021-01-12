@@ -1,5 +1,5 @@
 .container {
-  max-width: calc(100vw - 30px);
+  max-width: 100%;
   height: calc(100vh - 170px);
   margin: auto;
   margin-top: 10px;
@@ -7,25 +7,26 @@
   overflow-y: auto;
 }
 
-/* width */
+/* width scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
-
-/* Track */
+/* Track scrollbar */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
-/* Handle */
+/* Handle scrollbar */
 ::-webkit-scrollbar-thumb {
   background: #ff6f61;
   border-radius: 5px;
+}
+.container ul {
+  padding: 5px;
 }
 
 /* DESKTOP / TABLET LANDSCAPE*/
 @media all and (min-width: 960px) {
   .container {
-    width: calc(100vw - 330px);
+    width: 100%;
   }
 }

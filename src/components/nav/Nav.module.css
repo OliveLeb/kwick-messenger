@@ -16,9 +16,6 @@
   text-align: center;
 }
 
-.nav > :nth-child(3) {
-  display: none;
-}
 .menuIcon {
   font-size: 25px;
   cursor: pointer;

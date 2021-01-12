@@ -6,12 +6,12 @@ import dataService from '../../services/dataService';
 
 import styles from './InputMessage.module.css';
 
-const InputMessage = ({token,id}) => {
+const InputMessage = ({connectedUser}) => {
 
-    
-    const { handleInput, message } = useContext(DataContext)
+    const {user_id} = connectedUser;
+    const { handleInput, message, sendMessage } = useContext(DataContext)
 
-    const [submitForm] = useApiAuth(dataService.postMessage,id,token,null,message.content);
+    const [submitForm] = useApiAuth(dataService.postMessage,connectedUser,sendMessage,message.content);
 
     const {setToggleBtn,toggleBtn} = useContext(OptionContext)
 
@@ -19,10 +19,14 @@ const InputMessage = ({token,id}) => {
 
         <section className={styles.container}>
             <form onSubmit={submitForm}>
-                <input type='text' placeholder='Votre message...' onBlur={()=>setToggleBtn(false)} onFocus={()=>setToggleBtn(true)} onChange={handleInput(id)} value={message.content} className={styles.input} maxLength="140"/>
-                {   toggleBtn &&
+                <div>
+                    <input type='text' placeholder='Votre message...' onBlur={()=>setToggleBtn(false)} onFocus={()=>setToggleBtn(true)} onChange={handleInput(user_id)} value={message.content} className={styles.input} maxLength="140"/>
+                    { (toggleBtn || message.content.length > 0) && <sub>{message.content.length}/140</sub>}
+                </div>
+                {   (toggleBtn || message.content.length > 0) &&
                     <button type='submit'>Envoyer</button>
                 }
+                
             </form>
         </section>
     )

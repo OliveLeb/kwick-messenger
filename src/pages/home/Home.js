@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import ActionBar from '../../components/actionBar/ActionBar';
 import InputMessage from '../../components/inputMessage/InputMessage';
+import Loading from '../../components/loading/Loading';
 import MessagesList from '../../components/messagesList/MessagesList';
 import Modal from '../../components/modal/Modal';
 import UsersList from '../../components/usersList/UsersList';
@@ -20,12 +21,12 @@ const Home = () => {
     const { connectedUser,isLogged, logOut } = useContext( AuthContext);
     const {token,user_id} = connectedUser;
 
-    const { isRefreshing,fetchSinceTimestamp } = useContext(DataContext)
+    const { isRefreshing,fetchSinceTimestamp, isLoading, users,messages } = useContext(DataContext)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     // FETCH MESSAGES AND USERS LISTS
-    const [users,messages]  = useApiData(isLogged,dataService.getUsers,dataService.getMessages,token,isRefreshing,autoDisconnect,connectedUser,fetchSinceTimestamp);
+    useApiData(isLogged,dataService.getUsers,dataService.getMessages,token,isRefreshing,autoDisconnect,connectedUser,fetchSinceTimestamp);
 
     // OPEN MODAL AFTER 20 MINUTES OF INACTIVITY AND DISCONNECT USER
     const [submitForm] = useApiAuth(authService.logout,user_id,token);
@@ -46,8 +47,11 @@ const Home = () => {
             <section className={styles.container}>                
                 <section className={styles.principal}>                    
                     <Modal open={isModalOpen} onClose={closeModal} />
-                    <InputMessage token={token} id={user_id} />
-                    <MessagesList messages={messages} />
+                    <InputMessage connectedUser={connectedUser}/>
+                    { isLoading 
+                    ?   <Loading />
+                    :   <MessagesList messages={messages} />
+                    }
                 </section>
                 <UsersList users={users} />
             </section>

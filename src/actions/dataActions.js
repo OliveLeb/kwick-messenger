@@ -19,5 +19,27 @@ const defineTmpLimit = (dispatch) => (e) => {
     });
 };
 
-const actions = { refresh, handleInput, defineTmpLimit };
+const sendMessage = (dispatch) => (message) => {
+    dispatch({
+        type:'MESSAGE_SENT',
+        payload:message
+    })
+};
+
+
+const initFetching = (dispatch) => () => {
+    dispatch({type:'FETCHING_DATA'})
+};
+
+const fetchData = (dispatch) => (loggedUsers,messagesSent) => {
+    dispatch({
+                type:'FETCHED_DATA',
+                payload: {
+                    users: loggedUsers.data.result.user.map(user => user),
+                    messages: messagesSent.data.result.talk.sort((a,b)=> b.timestamp - a.timestamp).map(message => message)
+                }
+            })
+};
+
+const actions = { refresh, handleInput, defineTmpLimit, sendMessage, initFetching, fetchData };
 export default actions;

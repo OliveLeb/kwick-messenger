@@ -21,9 +21,13 @@ export const formatDate = (timestamp) => {
 
 
 // CHECK IF FORM EMPTY
-export const validationForm = (username,password,next) => {
-    if(username === '') return {type:'username', message:'Veuillez renseigner un nom de compte.'};
-    if(password === '') return {type:'password', message:'Veuillez renseigner un mot de passe.'};
+export const validationForm = (username,password,message,next) => {
+    if(message){
+        if(message.length === 0 || message.length > 140) return null;
+        else return next();
+    }
+    else if(username === '') return {type:'username', message:'Veuillez renseigner un nom de compte.'};
+    else if(password === '') return {type:'password', message:'Veuillez renseigner un mot de passe.'};
     next();
 };
 

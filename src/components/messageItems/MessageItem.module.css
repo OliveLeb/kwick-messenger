@@ -6,9 +6,10 @@
 }
 
 .date {
-  font-size: 0.9em;
+  font-size: 0.7em;
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
+  color: #303030;
 }
 
 .card :last-child {
