@@ -11,7 +11,7 @@ const ActionBar = ({connectedUser}) => {
 
     return (
         <section className={styles.container}>
-            <span>Bonjour {connectedUser.user_name}</span>
+            <span>{connectedUser.user_name}</span>
             <RefreshBtn refresh={refresh} />
             <Select handleInput={defineTmpLimit} fetchSinceTimestamp={fetchSinceTimestamp}/>
         </section>

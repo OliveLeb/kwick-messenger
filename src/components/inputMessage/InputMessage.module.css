@@ -3,7 +3,7 @@
   border-bottom: 1px solid #0f4c81;
   height: 30px;
   font-size: 1.1em;
-  width: 70%;
+  width: 50%;
   margin-bottom: 5px;
   transition: all 0.5s ease;
 }
@@ -30,4 +30,14 @@
 .container form {
   display: flex;
   flex-direction: column;
+}
+
+/* DESKTOP / TABLET LANDSCAPE */
+@media all and (min-width: 960px) {
+  .input {
+    width: 30%;
+  }
+  .input:focus {
+    width: 80%;
+  }
 }

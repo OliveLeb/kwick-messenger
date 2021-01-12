@@ -1,6 +1,26 @@
 .container {
   max-width: calc(100vw - 30px);
+  height: calc(100vh - 170px);
   margin: auto;
+  margin-top: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff6f61;
+  border-radius: 5px;
 }
 
 /* DESKTOP / TABLET LANDSCAPE*/

@@ -8,6 +8,7 @@
   background-color: #ff6f61;
   color: white;
   padding: 10px;
+  border-left: 1px solid #eee;
 }
 
 .container ul {

@@ -4,8 +4,16 @@ import MessageItem from '../messageItems/MessageItem';
 import styles from './MessagesList.module.css';
 
 const MessagesList = ({messages}) => {
+
+
+    const calcPxToTop = () => {
+
+    }
+
+
+
     return (
-        <section className={styles.container}>
+        <section className={styles.container} >
             {messages.length > 0 ?
                 <ul>
                 {
