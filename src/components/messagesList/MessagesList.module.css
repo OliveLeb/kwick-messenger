@@ -5,6 +5,7 @@
   margin-top: 10px;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 }
 
 /* width scrollbar */
@@ -22,6 +23,11 @@
 }
 .container ul {
   padding: 5px;
+}
+
+.warning {
+  text-align: center;
+  margin-top: 50px;
 }
 
 /* DESKTOP / TABLET LANDSCAPE*/

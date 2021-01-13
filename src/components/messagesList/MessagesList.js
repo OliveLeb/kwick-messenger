@@ -5,22 +5,15 @@ import styles from './MessagesList.module.css';
 
 const MessagesList = ({messages}) => {
 
-
-    const calcPxToTop = () => {
-
-    }
-
-
-
     return (
         <section className={styles.container} >
             {messages.length > 0 ?
                 <ul>
                 {
-                    messages/*.slice(0,30)*/.map((item,index) => <MessageItem key={index} message={item}/>)
+                    messages.map((item,index) => <MessageItem key={index} message={item}/>)
                 }
             </ul>
-            : <div>Pas de nouveaux messages !</div>
+            : <div className={styles.warning}>Pas de nouveaux messages !</div>
             }
         </section>
     );
